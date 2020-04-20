@@ -1,11 +1,10 @@
 package com.zjh.cms.system.controller;
 
 
-import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.zjh.cms.system.common.DataGrideView;
+import com.zjh.cms.system.common.DataGridView;
 import com.zjh.cms.system.common.ResultObj;
 import com.zjh.cms.system.domain.LogInfo;
 import com.zjh.cms.system.service.LogInfoService;
@@ -33,7 +32,7 @@ public class LogInfoController {
     private LogInfoService logInfoService;
 
     @RequestMapping("loadAllLogInfo")
-    public DataGrideView loadAllLogInfo(LogInfoVo logInfoVo){
+    public DataGridView loadAllLogInfo(LogInfoVo logInfoVo){
         IPage<LogInfo> page = new Page<>(logInfoVo.getPage(),logInfoVo.getLimit());
         QueryWrapper<LogInfo> queryWrapper = new QueryWrapper<>();
         queryWrapper.like(StringUtils.isNotBlank(logInfoVo.getLoginname()),"loginname",logInfoVo.getLoginname());
@@ -42,7 +41,7 @@ public class LogInfoController {
         queryWrapper.le(logInfoVo.getEndDate()!=null,"logintime",logInfoVo.getEndDate());
         queryWrapper.orderByDesc("logintime");
         this.logInfoService.page(page,queryWrapper);
-        return new DataGrideView(page.getTotal(),page.getRecords());
+        return new DataGridView(page.getTotal(),page.getRecords());
     }
 
     @RequestMapping("deleteLogInfo")

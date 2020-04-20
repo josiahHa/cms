@@ -41,7 +41,7 @@ class CmsApplicationTests {
     public void test(){
         QueryWrapper<Permission> wrapper = new QueryWrapper<>();
         //
-        wrapper.eq("type", Constant.TYPT_MENU);
+        wrapper.eq("type", Constant.TYPE_MENU);
         wrapper.eq("available",Constant.AVALIABLE_TRUE);
 
         List<Permission> list = permissionService.list(wrapper);;

@@ -13,8 +13,8 @@ import java.util.Date;
 public class LogInfoVo extends LogInfo {
     private static final long serialVersionUID=1L;
 
-    private Integer page;
-    private Integer limit;
+    private Integer page=1;
+    private Integer limit=10;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date startDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")

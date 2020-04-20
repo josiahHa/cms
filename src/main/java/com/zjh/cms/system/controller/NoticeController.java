@@ -1,17 +1,15 @@
 package com.zjh.cms.system.controller;
 
 
-import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.zjh.cms.system.common.DataGrideView;
+import com.zjh.cms.system.common.DataGridView;
 import com.zjh.cms.system.common.ResultObj;
 import com.zjh.cms.system.common.WebUtils;
 import com.zjh.cms.system.domain.Notice;
 import com.zjh.cms.system.domain.User;
 import com.zjh.cms.system.service.NoticeService;
-import com.zjh.cms.system.vo.LogInfoVo;
 import com.zjh.cms.system.vo.NoticeVo;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +35,7 @@ public class NoticeController {
     private NoticeService noticeService;
 
     @RequestMapping("loadAllNotice")
-    public DataGrideView loadAllNotice(NoticeVo noticeVo){
+    public DataGridView loadAllNotice(NoticeVo noticeVo){
         IPage<Notice> page = new Page<>(noticeVo.getPage(),noticeVo.getLimit());
         QueryWrapper<Notice> queryWrapper = new QueryWrapper<>();
         queryWrapper.like(StringUtils.isNotBlank(noticeVo.getTitle()),"title",noticeVo.getTitle());
@@ -46,7 +44,7 @@ public class NoticeController {
         queryWrapper.le(noticeVo.getEndDate()!=null,"createtime",noticeVo.getEndDate());
         queryWrapper.orderByDesc("createtime");
         this.noticeService.page(page,queryWrapper);
-        return new DataGrideView(page.getTotal(),page.getRecords());
+        return new DataGridView(page.getTotal(),page.getRecords());
     }
 
     @RequestMapping("addNotice")

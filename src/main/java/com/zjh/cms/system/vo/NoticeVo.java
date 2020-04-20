@@ -13,8 +13,8 @@ import java.util.Date;
 public class NoticeVo extends Notice {
     private static final long serialVersionUID=1L;
 
-    private Integer page;
-    private Integer limit;
+    private Integer page=1;
+    private Integer limit=10;
     private Integer[] ids;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")

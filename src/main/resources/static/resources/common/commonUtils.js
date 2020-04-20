@@ -1,7 +1,7 @@
 
 
 
-function submitForm(formId, opurl, callback,modal) {
+function submitFormData(formId, opurl, callback,modal) {
     // if(_ifTimeOut){
     //     return;
     // }

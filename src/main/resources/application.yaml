@@ -47,7 +47,7 @@ mybatis-plus:
       logic-delete-field: delete_type  #全局逻辑删除字段值 3.3.0开始支持，详情看下面。
       logic-delete-value: 1 # 逻辑已删除值(默认为 1)
       logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
-  mapper-locations: classpath:mapper/*.xml
+  mapper-locations: classpath:mapper/*/*Mapper.xml
 #mybatis:
 #  type-aliases-package: com.huang.pojo
 #  mapper-locations: classpath:mybatis/mapper/*.xml
