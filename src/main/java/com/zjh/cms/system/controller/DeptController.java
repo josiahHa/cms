@@ -12,6 +12,8 @@ import com.zjh.cms.system.service.DeptService;
 import com.zjh.cms.system.vo.DeptVo;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
@@ -32,16 +34,16 @@ public class DeptController {
     @Autowired
     private DeptService deptService;
 
+    @GetMapping("{id}")
+    public Dept getEmployee(@PathVariable("id")  Integer id){
+        Dept emp = deptService.getById(id);
+        return emp;
+    }
+
     @RequestMapping("loadDeptManagerLeftTreeJson")
     public DataGridView loadDeptManagerLeftTreeJson(DeptVo deptVo){
+        List<TreeNode> treeNodes = this.deptService.listDeptTreeNode();
 
-        List<Dept> list = this.deptService.list();
-        List<TreeNode> treeNodes = new ArrayList<>();
-
-        for(Dept dept: list){
-            Boolean spred = dept.getOpen()==1?true:false;
-            treeNodes.add(new TreeNode(dept.getId(),dept.getPid(),dept.getTitle(),spred));
-        }
         return new DataGridView(treeNodes);
     }
     @RequestMapping("loadAllDept")

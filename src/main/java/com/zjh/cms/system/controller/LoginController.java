@@ -1,6 +1,7 @@
 package com.zjh.cms.system.controller;
 
 import com.zjh.cms.system.common.ActiverUser;
+import com.zjh.cms.system.common.Constant;
 import com.zjh.cms.system.common.ResultObj;
 import com.zjh.cms.system.common.WebUtils;
 import com.zjh.cms.system.domain.LogInfo;
@@ -40,7 +41,9 @@ public class LoginController {
 
             return ResultObj.LOGIN_SUCCESS;
         }catch (AuthenticationException e){
-            return ResultObj.LOGIN_ERROR_PASS;
+            String error_message = e.getMessage();
+            return new ResultObj(Constant.ERROR,error_message);
+//            return ResultObj.LOGIN_ERROR_PASS;
         }
 
     }

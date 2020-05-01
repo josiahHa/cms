@@ -36,4 +36,21 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
 //        this.getBaseMapper().select
         return this.getBaseMapper().queryRolePermissionIdsByRid(roleId);
     }
+
+    @Override
+    public void saveRolePermission(Integer rid, Integer[] ids) {
+        RoleMapper roleMapper = this.getBaseMapper();
+
+        roleMapper.deleteRolePermissionByRid(rid);
+        if(ids!=null && ids.length>0){
+            for (Integer pid:ids) {
+                roleMapper.saveRolePermission(rid,pid);
+            }
+        }
+    }
+
+    @Override
+    public List<Integer> queryUserRoleIdsByUid(Integer id) {
+        return this.getBaseMapper().queryUserRoleIdsByUid(id);
+    }
 }

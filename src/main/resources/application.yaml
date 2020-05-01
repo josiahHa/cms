@@ -1,5 +1,4 @@
 
-
 spring:
   datasource:
     url: jdbc:p6spy:mysql://47.93.54.242:3306/erp?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&failOverReadOnly=false
@@ -38,6 +37,10 @@ spring:
   #      web-stat-filter:
   #        enabled: true
   #        exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*"
+  redis:
+#    host: 47.93.54.242
+    port: 6379
+    host: localhost
 
 mybatis-plus:
   configuration:
@@ -67,3 +70,5 @@ shiro:
   log-out-url: /login/logout*
   authc-ulrs:
   - /**
+server:
+  port: 8085

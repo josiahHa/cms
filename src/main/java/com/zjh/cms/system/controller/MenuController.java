@@ -7,16 +7,15 @@ import com.zjh.cms.system.common.*;
 import com.zjh.cms.system.domain.Permission;
 import com.zjh.cms.system.domain.User;
 import com.zjh.cms.system.service.PermissionService;
+import com.zjh.cms.system.service.RoleService;
+import com.zjh.cms.system.service.UserService;
 import com.zjh.cms.system.vo.PermissionVo;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * <p>
@@ -32,21 +31,41 @@ public class MenuController {
 
     @Autowired
     private PermissionService permissionService;;
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private RoleService roleService;
 
     @RequestMapping("loadIndexLeftMenuJson")
     public DataGridView loadIndexLeftMenuJson(PermissionVo permissionVo){
         QueryWrapper<Permission> wrapper = new QueryWrapper<>();
         //
         wrapper.eq("type", Constant.TYPE_MENU);
-        wrapper.eq("available",Constant.AVALIABLE_TRUE);
+        wrapper.eq("available",Constant.AVAILABLE_TRUE);
 
         User user = (User) WebUtils.getSession().getAttribute("user");
         List<Permission> list = null;
         if(Constant.USER_TYPE_SUPER==user.getType()){
             list = permissionService.list(wrapper);
         }else{
-            //根据角色ID+角色+权限
-            list = permissionService.list(wrapper);
+            //根据用户ID+角色+权限去查询
+            Integer userId=user.getId();
+            //根据用户ID查询角色
+            List<Integer> currentUserRoleIds = roleService.queryUserRoleIdsByUid(userId);
+            //根据角色ID取到权限和菜单ID
+            Set<Integer> pids=new HashSet<>();
+            for (Integer rid : currentUserRoleIds) {
+                List<Integer> permissionIds = roleService.queryRolePermissionIdsByRid(rid);
+                pids.addAll(permissionIds);
+            }
+
+            //根据角色ID查询权限
+            if(pids.size()>0) {
+                wrapper.in("id", pids);
+                list=permissionService.list(wrapper);
+            }else {
+                list =new ArrayList<>();
+            }
         }
         List<TreeNode> treeNodes = new ArrayList<>();
         for(Permission permission:list){

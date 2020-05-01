@@ -134,22 +134,21 @@ public class RoleController {
             nodes.add(new TreeNode(p1.getId(), p1.getPid(), p1.getTitle(), spread, checkArr));
         }
         return new DataGridView(nodes);
-//        return new DataGridView();
     }
 
     /**
      * 保存角色和菜单权限之间的关系
      */
-//    @RequestMapping("saveRolePermission")
-//    public ResultObj saveRolePermission(Integer rid,Integer[] ids) {
-//        try {
-//            this.roleService.saveRolePermission(rid,ids);
-//            return ResultObj.DISPATCH_SUCCESS;
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return ResultObj.DISPATCH_ERROR;
-//        }
-//    }
+    @RequestMapping("saveRolePermission")
+    public ResultObj saveRolePermission(Integer rid,Integer[] ids) {
+        try {
+            this.roleService.saveRolePermission(rid,ids);
+            return ResultObj.DISPATCH_SUCCESS;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResultObj.DISPATCH_ERROR;
+        }
+    }
 
 }
 

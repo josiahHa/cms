@@ -111,11 +111,21 @@ public class SystemController {
     }
 
     /**
-     * 跳转到权限管理--right
+     * 跳转到角色管理
      *
      */
     @RequestMapping("toRoleManager")
     public String toRoleManager() {
         return "system/role/roleManager";
+    }
+
+
+    /**
+     * 跳转到用户管理
+     *
+     */
+    @RequestMapping("toUserManager")
+    public String toUserManager() {
+        return "system/user/userManager";
     }
 }

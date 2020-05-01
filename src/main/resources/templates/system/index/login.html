@@ -10,6 +10,7 @@
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="format-detection" content="telephone=no">
 	<link rel="icon" href="/resources/favicon.ico">
+	<link rel="stylesheet" href="/resources/css/sweetalert/sweetalert.css">
 	<link rel="stylesheet" href="/resources/layui/css/layui.css" media="all" />
 	<link rel="stylesheet" href="/resources/css/public.css" media="all" />
 </head>
@@ -39,10 +40,15 @@
 		</div>
 	</form>
 
-
+	<script type="text/javascript" src="/resources/js/sweetalert/sweetalert.min.js"></script>
 	<script type="text/javascript" src="/resources/layui/layui.js"></script>
 	<script type="text/javascript" src="/resources/page/login/login.js"></script>
 	<script type="text/javascript" src="/resources/js/cache.js"></script>
+	<script type="text/javascript">
+        if (window != top){
+            top.location.href = location.href;
+        }
+	</script>
 
 </body>
 </html>

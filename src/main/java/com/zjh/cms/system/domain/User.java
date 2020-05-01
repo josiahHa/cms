@@ -1,6 +1,7 @@
 package com.zjh.cms.system.domain;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
@@ -61,4 +62,10 @@ public class User {
     private String imgpath;
 
     private String salt;
+
+    @TableField(exist = false)
+    private String leadername;
+
+    @TableField(exist = false)
+    private String deptname;
 }

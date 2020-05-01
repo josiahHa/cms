@@ -5,7 +5,7 @@ import java.util.Map;
 
 import javax.servlet.Filter;
 
-import com.zjh.cms.system.realm.UserRealm;
+import com.zjh.cms.system.shiro.UserRealm;
 import org.apache.shiro.authc.credential.CredentialsMatcher;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.mgt.SecurityManager;

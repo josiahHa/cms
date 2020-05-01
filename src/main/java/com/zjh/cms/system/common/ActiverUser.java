@@ -13,5 +13,6 @@ import java.util.List;
 public class ActiverUser {
     private User user;
     private List<String> roles;
-    private List<String> permission;
+    private List<String> permissions;
+
 }
